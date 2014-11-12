@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6249" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="43M-Lc-aBU">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6243"/>
+    </dependencies>
+    <scenes>
+        <!--理财规划-->
+        <scene sceneID="tdw-D6-vSI">
+            <objects>
+                <tableViewController id="eD4-Zj-7Kv" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="p2Y-3O-wGf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="viJ-FY-4fS">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="viJ-FY-4fS" id="msf-3i-cmE">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="eD4-Zj-7Kv" id="5SL-fM-Tit"/>
+                            <outlet property="delegate" destination="eD4-Zj-7Kv" id="ZIc-jw-G23"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="理财规划" id="soj-fI-HuP"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="c6p-X3-6i8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1491" y="511"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="wyA-Ob-z26">
+            <objects>
+                <navigationController storyboardIdentifier="storyBoardOneNav" automaticallyAdjustsScrollViewInsets="NO" id="43M-Lc-aBU" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="aDn-4g-VQS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="eD4-Zj-7Kv" kind="relationship" relationship="rootViewController" id="E6Q-SK-qYz"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="H96-AW-QsW" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="679" y="511"/>
+        </scene>
+    </scenes>
+</document>
