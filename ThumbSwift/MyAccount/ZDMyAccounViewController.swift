@@ -10,29 +10,17 @@ import UIKit
 
 @objc
 protocol ZDMyAccounViewControllerDelegate {
-    func myAccounViewControllerDidLogout(viewController: UIViewController)
+    func myAccounViewControllerShouldLogout(viewController: UIViewController)
 }
     
 
-class ZDMyAccounViewController: UITableViewController, ZDLoginTableViewControllerDelegate {
+class ZDMyAccounViewController: UITableViewController {
     
     var delegate: ZDMyAccounViewControllerDelegate?
     
-    func loginViewControllerDidLoggedIn(viewController: UIViewController) {
-        
-    }
-    
-    func loginViewControllerDidLoggedOut(viewController: UIViewController) {
-        if delegate != nil {
-            self.delegate?.myAccounViewControllerDidLogout(self)
-        }
-    }
-    
     @IBAction func logout() {
-        NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "DefaultCurrentUserId")
-        var loginNav = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController() as UINavigationController
-        var loginVC = loginNav.topViewController as ZDLoginTableViewController
-        loginVC.delegate = self
-        self.presentViewController(loginNav, animated: true, completion: nil)
+        if delegate != nil {
+            self.delegate?.myAccounViewControllerShouldLogout(self)
+        }
     }
 }

@@ -11,19 +11,14 @@ import UIKit
 @objc
 protocol ZDLoginTableViewControllerDelegate {
     func loginViewControllerDidLoggedIn(viewController: UIViewController)
-    func loginViewControllerDidLoggedOut(viewController: UIViewController)
 }
 
 class ZDLoginTableViewController: UITableViewController {
     
     var delegate: ZDLoginTableViewControllerDelegate?
     
-    @IBAction func logout() {
-        self.dismissViewControllerAnimated(true, completion: { () -> Void in
-            if self.delegate != nil {
-                self.delegate?.loginViewControllerDidLoggedOut(self)
-            }
-        })
+    @IBAction func cancel() {
+        self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: - Table view data source
@@ -40,12 +35,11 @@ class ZDLoginTableViewController: UITableViewController {
         ZDWebService.sharedWebService().loginWithUserName("13818111655", password: "123456", { (error, resultDic) -> Void in
             println(resultDic)
             if (error == nil) {
-                NSUserDefaults.standardUserDefaults().setObject("13818111655", forKey: "DefaultCurrentUserId")
-                self.dismissViewControllerAnimated(true, completion: { () -> Void in
-                    if self.delegate != nil {
+                if self.delegate != nil {
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.delegate!.loginViewControllerDidLoggedIn(self)
-                    }
-                })
+                    })
+                }
             }
         })
     }

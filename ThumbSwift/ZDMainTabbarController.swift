@@ -47,31 +47,46 @@ class ZDMainTabbarController: UITabBarController, UITabBarControllerDelegate, ZD
             }
         }
     }
+    
+    // MARK: - UITabBarControllerDelegate
 
     func tabBarController(tabBarController: UITabBarController, shouldSelectViewController viewController: UIViewController) -> Bool {
         var userId = NSUserDefaults.standardUserDefaults().stringForKey("DefaultCurrentUserId")
         var nav2 = viewController as UINavigationController
         
         if userId == nil && nav2.topViewController is ZDMyAccounViewController {
-                var loginNav = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController() as UINavigationController
-                var loginVC = loginNav.topViewController as ZDLoginTableViewController
-                tabBarController.presentViewController(loginNav, animated: true, completion: {loginVC.delegate = self})
-                return false
+            self.presentLoginViewController()
+            return false
         }
         
         return true
     }
     
+    // MARK: - ZDLoginTableViewControllerDelegate
+    
     func loginViewControllerDidLoggedIn(viewController: UIViewController) {
         self.selectedIndex = 1
+        NSUserDefaults.standardUserDefaults().setObject("13818111655", forKey: "DefaultCurrentUserId")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        self.dismissViewControllerAnimated(true, completion: {} )
     }
     
-    func loginViewControllerDidLoggedOut(viewController: UIViewController) {
-        
+    // MARK: - ZDMyAccounViewControllerDelegate
+    
+    func myAccounViewControllerShouldLogout(viewController: UIViewController) {
+        self.selectedIndex = 2
+        NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "DefaultCurrentUserId")
+        NSUserDefaults.standardUserDefaults().synchronize()
+        self.presentLoginViewController()
     }
     
-    func myAccounViewControllerDidLogout(viewController: UIViewController) {
-        self.selectedIndex = 0
+    // MARK: - Private Method
+    
+    func presentLoginViewController() {
+        var loginNav = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController() as UINavigationController
+        var loginVC = loginNav.topViewController as ZDLoginTableViewController
+        loginVC.delegate = self
+        self.presentViewController(loginNav, animated: true, completion: {})
     }
 
 }
