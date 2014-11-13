@@ -27,6 +27,8 @@
 		1819A8691A1371C8005F24C3 /* StoryboardThree.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1819A8681A1371C8005F24C3 /* StoryboardThree.storyboard */; };
 		1819A86B1A137B71005F24C3 /* ZDMyAccounViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1819A86A1A137B71005F24C3 /* ZDMyAccounViewController.swift */; };
 		1819A86D1A138113005F24C3 /* ZDLoginTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1819A86C1A138113005F24C3 /* ZDLoginTableViewController.swift */; };
+		183DA2451A14D81D00678E81 /* ZDAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183DA2441A14D81D00678E81 /* ZDAccountTableViewCell.swift */; };
+		183DA2471A14E4A900678E81 /* ZDAccountSecurityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183DA2461A14E4A900678E81 /* ZDAccountSecurityTableViewController.swift */; };
 		18D67B281A14380100CF14A9 /* ZDOldFinancialTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D67B271A14380100CF14A9 /* ZDOldFinancialTableViewCell.swift */; };
 		18D67B2A1A14405500CF14A9 /* ZDFinancialTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D67B291A14405500CF14A9 /* ZDFinancialTableViewController.swift */; };
 		18D67B2C1A144B5400CF14A9 /* ZDFinancialStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D67B2B1A144B5400CF14A9 /* ZDFinancialStore.swift */; };
@@ -80,6 +82,8 @@
 		1819A8681A1371C8005F24C3 /* StoryboardThree.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = StoryboardThree.storyboard; sourceTree = "<group>"; };
 		1819A86A1A137B71005F24C3 /* ZDMyAccounViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZDMyAccounViewController.swift; sourceTree = "<group>"; };
 		1819A86C1A138113005F24C3 /* ZDLoginTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZDLoginTableViewController.swift; sourceTree = "<group>"; };
+		183DA2441A14D81D00678E81 /* ZDAccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZDAccountTableViewCell.swift; sourceTree = "<group>"; };
+		183DA2461A14E4A900678E81 /* ZDAccountSecurityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZDAccountSecurityTableViewController.swift; sourceTree = "<group>"; };
 		18D67B271A14380100CF14A9 /* ZDOldFinancialTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZDOldFinancialTableViewCell.swift; sourceTree = "<group>"; };
 		18D67B291A14405500CF14A9 /* ZDFinancialTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZDFinancialTableViewController.swift; sourceTree = "<group>"; };
 		18D67B2B1A144B5400CF14A9 /* ZDFinancialStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZDFinancialStore.swift; sourceTree = "<group>"; };
@@ -252,6 +256,8 @@
 			children = (
 				1819A8661A1371BF005F24C3 /* StoryboardTwo.storyboard */,
 				1819A86A1A137B71005F24C3 /* ZDMyAccounViewController.swift */,
+				183DA2441A14D81D00678E81 /* ZDAccountTableViewCell.swift */,
+				183DA2461A14E4A900678E81 /* ZDAccountSecurityTableViewController.swift */,
 			);
 			path = MyAccount;
 			sourceTree = "<group>";
@@ -375,6 +381,7 @@
 				1819A85B1A136EE4005F24C3 /* ZDWebService+URLString.m in Sources */,
 				1819A86D1A138113005F24C3 /* ZDLoginTableViewController.swift in Sources */,
 				18D67B301A146BE900CF14A9 /* ZDOldFinancialItem.swift in Sources */,
+				183DA2471A14E4A900678E81 /* ZDAccountSecurityTableViewController.swift in Sources */,
 				1819A80B1A136DDF005F24C3 /* ZDMainTabbarController.swift in Sources */,
 				1819A85A1A136EE4005F24C3 /* ZDNSURLSession.m in Sources */,
 				18D67B321A14767000CF14A9 /* ZDSelectionViewController.swift in Sources */,
@@ -385,6 +392,7 @@
 				18D67B2A1A14405500CF14A9 /* ZDFinancialTableViewController.swift in Sources */,
 				1819A8091A136DDF005F24C3 /* AppDelegate.swift in Sources */,
 				1819A84E1A136EC8005F24C3 /* Reachability.m in Sources */,
+				183DA2451A14D81D00678E81 /* ZDAccountTableViewCell.swift in Sources */,
 				1819A84C1A136EC8005F24C3 /* NSString+Tony.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
