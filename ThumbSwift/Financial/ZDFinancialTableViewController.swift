@@ -31,10 +31,10 @@ class ZDFinancialTableViewController: UITableViewController, ZDSelectionViewCont
     
     // MARK: - ZDSelectionViewControllerDelegate
     
-    func segmentControlDidChanged(view:UIView, selectedIndex:NSInteger)
+    func segmentControlDidChanged(viewController: UIViewController, selectedIndex: NSInteger)
     {
-        self.segmentControllSelectedIndex = selectedIndex
-        self.tableView.reloadData()
+//        self.segmentControllSelectedIndex = selectedIndex
+//        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source

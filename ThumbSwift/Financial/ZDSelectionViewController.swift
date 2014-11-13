@@ -10,7 +10,7 @@ import UIKit
 
 @objc
 protocol ZDSelectionViewControllerDelegate {
-    func segmentControlDidChanged(view:UIView, selectedIndex:NSInteger)
+    func segmentControlDidChanged(viewController:UIViewController, selectedIndex:NSInteger)
 }
 
 class ZDSelectionViewController: UIViewController {
@@ -21,12 +21,16 @@ class ZDSelectionViewController: UIViewController {
     @IBOutlet var buttons: [UIButton]!
     @IBOutlet weak var movingView: UIView!
     
-    @IBAction func firstSegmentSelected() {
-        
+    @IBAction func firstSegmentSelected(sender: AnyObject!) {
+        self.selectedIndex = 0
+        self.updateSegmentForSelectedIndex(0, button: sender as UIButton)
+        self.delegate?.segmentControlDidChanged(self, selectedIndex: 0)
     }
     
-    @IBAction func secondSegmentSelected() {
-        
+    @IBAction func secondSegmentSelected(sender: AnyObject!) {
+        self.selectedIndex = 1
+        self.updateSegmentForSelectedIndex(1, button: sender as UIButton)
+        self.delegate?.segmentControlDidChanged(self, selectedIndex: 1)
     }
     
     // MARK: - Private Method
@@ -35,8 +39,12 @@ class ZDSelectionViewController: UIViewController {
         for button in self.buttons {
             button.selected = false
         }
-//        button.seleceted = true
-//        
-//        UIView.animateWithDuration(delay: 0.5, animations:nil)
+        button.selected = true
+
+        UIView.animateWithDuration(0.5, animations: {
+            var originX: CGFloat = self.movingView.frame.width
+            var x = originX * CGFloat(index)
+            self.movingView.frame = CGRectMake(x, self.movingView.frame.origin.y, self.movingView.frame.width, self.movingView.frame.height)
+        })
     }
 }
