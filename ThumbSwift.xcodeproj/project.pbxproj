@@ -17,7 +17,6 @@
 		1819A84C1A136EC8005F24C3 /* NSString+Tony.m in Sources */ = {isa = PBXBuildFile; fileRef = 1819A8411A136EC8005F24C3 /* NSString+Tony.m */; };
 		1819A84D1A136EC8005F24C3 /* GSReachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1819A8441A136EC8005F24C3 /* GSReachability.m */; };
 		1819A84E1A136EC8005F24C3 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 1819A8461A136EC8005F24C3 /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		1819A84F1A136EC8005F24C3 /* SSFSegmentControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 1819A8491A136EC8005F24C3 /* SSFSegmentControl.m */; };
 		1819A85A1A136EE4005F24C3 /* ZDNSURLSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 1819A8531A136EE4005F24C3 /* ZDNSURLSession.m */; };
 		1819A85B1A136EE4005F24C3 /* ZDWebService+URLString.m in Sources */ = {isa = PBXBuildFile; fileRef = 1819A8551A136EE4005F24C3 /* ZDWebService+URLString.m */; };
 		1819A85C1A136EE4005F24C3 /* ZDWebService.m in Sources */ = {isa = PBXBuildFile; fileRef = 1819A8571A136EE4005F24C3 /* ZDWebService.m */; };
@@ -67,8 +66,6 @@
 		1819A8441A136EC8005F24C3 /* GSReachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GSReachability.m; sourceTree = "<group>"; };
 		1819A8451A136EC8005F24C3 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
 		1819A8461A136EC8005F24C3 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
-		1819A8481A136EC8005F24C3 /* SSFSegmentControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSFSegmentControl.h; sourceTree = "<group>"; };
-		1819A8491A136EC8005F24C3 /* SSFSegmentControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSFSegmentControl.m; sourceTree = "<group>"; };
 		1819A8521A136EE4005F24C3 /* ZDNSURLSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDNSURLSession.h; sourceTree = "<group>"; };
 		1819A8531A136EE4005F24C3 /* ZDNSURLSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDNSURLSession.m; sourceTree = "<group>"; };
 		1819A8541A136EE4005F24C3 /* ZDWebService+URLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZDWebService+URLString.h"; sourceTree = "<group>"; };
@@ -188,7 +185,6 @@
 				1819A8401A136EC8005F24C3 /* NSString+Tony.h */,
 				1819A8411A136EC8005F24C3 /* NSString+Tony.m */,
 				1819A8421A136EC8005F24C3 /* Reachability */,
-				1819A8471A136EC8005F24C3 /* SSFSegmentedControl */,
 			);
 			path = customerCategory;
 			sourceTree = "<group>";
@@ -211,15 +207,6 @@
 				1819A8461A136EC8005F24C3 /* Reachability.m */,
 			);
 			path = Reachability;
-			sourceTree = "<group>";
-		};
-		1819A8471A136EC8005F24C3 /* SSFSegmentedControl */ = {
-			isa = PBXGroup;
-			children = (
-				1819A8481A136EC8005F24C3 /* SSFSegmentControl.h */,
-				1819A8491A136EC8005F24C3 /* SSFSegmentControl.m */,
-			);
-			path = SSFSegmentedControl;
 			sourceTree = "<group>";
 		};
 		1819A8511A136EE4005F24C3 /* webService */ = {
@@ -391,7 +378,6 @@
 				1819A80B1A136DDF005F24C3 /* ZDMainTabbarController.swift in Sources */,
 				1819A85A1A136EE4005F24C3 /* ZDNSURLSession.m in Sources */,
 				18D67B321A14767000CF14A9 /* ZDSelectionViewController.swift in Sources */,
-				1819A84F1A136EC8005F24C3 /* SSFSegmentControl.m in Sources */,
 				1819A84B1A136EC8005F24C3 /* MBProgressHUD.m in Sources */,
 				18D67B2E1A1453A900CF14A9 /* ZDNewFinancialTableViewCell.swift in Sources */,
 				1819A85D1A136EE4005F24C3 /* ZDWebserviceDataParse.m in Sources */,

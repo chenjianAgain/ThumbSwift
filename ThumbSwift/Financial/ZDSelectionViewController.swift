@@ -42,9 +42,13 @@ class ZDSelectionViewController: UIViewController {
         button.selected = true
 
         UIView.animateWithDuration(0.5, animations: {
-            var originX: CGFloat = self.movingView.frame.width
-            var x = originX * CGFloat(index)
-            self.movingView.frame = CGRectMake(x, self.movingView.frame.origin.y, self.movingView.frame.width, self.movingView.frame.height)
+            let frame = self.movingView.frame
+            let originX: CGFloat = frame.width
+            let x = originX * CGFloat(index)
+            let y = frame.origin.y
+            let width = frame.width
+            let height = frame.height
+            self.movingView.frame = CGRectMake(x, y, width, height)
         })
     }
 }
