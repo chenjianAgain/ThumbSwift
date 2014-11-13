@@ -52,16 +52,11 @@ class ZDMainTabbarController: UITabBarController, UITabBarControllerDelegate, ZD
         var userId = NSUserDefaults.standardUserDefaults().stringForKey("DefaultCurrentUserId")
         var nav2 = viewController as UINavigationController
         
-        if userId == nil {
-            if nav2.topViewController is ZDMyAccounViewController {
+        if userId == nil && nav2.topViewController is ZDMyAccounViewController {
                 var loginNav = UIStoryboard(name: "Login", bundle: nil).instantiateInitialViewController() as UINavigationController
                 var loginVC = loginNav.topViewController as ZDLoginTableViewController
-                tabBarController.presentViewController(loginNav, animated: true, completion: {
-                    loginVC.delegate = self
-                    
-                })
+                tabBarController.presentViewController(loginNav, animated: true, completion: {loginVC.delegate = self})
                 return false
-            }
         }
         
         return true

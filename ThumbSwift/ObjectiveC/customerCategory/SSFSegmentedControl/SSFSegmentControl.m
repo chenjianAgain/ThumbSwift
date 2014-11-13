@@ -16,16 +16,6 @@
 
 @implementation SSFSegmentControl
 
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
-    self = [super initWithCoder:aDecoder];
-    if (self) {
-        self.selectedIndex = 0;
-        
-    }
-    return self;
-}
-
 #pragma mark - Action
 
 - (IBAction)firstSegmentPressed:(UIButton *)sender
