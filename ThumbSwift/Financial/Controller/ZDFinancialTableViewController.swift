@@ -10,18 +10,15 @@ import UIKit
 
 class ZDFinancialTableViewController: UITableViewController, ZDSelectionViewControllerDelegate {
     
-    var data = ["证大年丰","证大月收","证大季喜","证大岁悦","证大双鑫"]
-    
+//    var data = ["证大年丰","证大月收","证大季喜","证大岁悦","证大双鑫"]
+    var data: NSArray?
+    var selectedProduct: Product?
     var segmentControllSelectedIndex = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.data = ZDFinancialStore.sharedInstance.products
     }
 
     override func didReceiveMemoryWarning() {
@@ -48,7 +45,7 @@ class ZDFinancialTableViewController: UITableViewController, ZDSelectionViewCont
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete method implementation.
         // Return the number of rows in the section.
-        return data.count
+        return data!.count
     }
 
     
@@ -57,8 +54,8 @@ class ZDFinancialTableViewController: UITableViewController, ZDSelectionViewCont
         var cell: UITableViewCell
         if self.segmentControllSelectedIndex == 0 {
             let oldCell = ZDOldFinancialTableViewCell.cellWithTableView(self.tableView) as ZDOldFinancialTableViewCell!
-            var item = ZDOldFinancialItem(itemName: data[indexPath.row])
-            oldCell.item = item
+            var item = data![indexPath.row] as Product
+            oldCell.product = item
             cell = oldCell
         } else {
             let newCell = ZDNewFinancialTableViewCell.cellWithTableView(self.tableView) as ZDNewFinancialTableViewCell!
@@ -66,14 +63,28 @@ class ZDFinancialTableViewController: UITableViewController, ZDSelectionViewCont
         }
         return cell
     }
-        // MARK: - Navigation
+    
+    // MARK: - Table view delegate
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        self.selectedProduct = self.data![indexPath.row] as? Product
+        self.performSegueWithIdentifier("Show Offline Detail", sender: self)
+    }
+    
+    // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "Embed Selection" {
             var selectionViewController = segue.destinationViewController as ZDSelectionViewController
             selectionViewController.delegate = self
+        } else if segue.identifier == "Show Offline Detail" {
+            var offlineApplyViewController: ZDOfflineApplyViewController = segue.destinationViewController as ZDOfflineApplyViewController
+            offlineApplyViewController.product = self.selectedProduct
         }
+        
+        
     }
 
 }

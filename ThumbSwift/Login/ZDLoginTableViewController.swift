@@ -13,36 +13,31 @@ protocol ZDLoginTableViewControllerDelegate {
     func loginViewControllerDidLoggedIn(viewController: UIViewController)
 }
 
-class ZDLoginTableViewController: UITableViewController {
+class ZDLoginTableViewController: BaseViewController {
+    
+    @IBOutlet weak var registerButton: UIButton!
     
     var delegate: ZDLoginTableViewControllerDelegate?
     
     @IBAction func cancel() {
         self.dismissViewControllerAnimated(true, completion: nil)
     }
-    
-    // MARK: - Table view data source
 
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        
-        if indexPath.section == 0 && indexPath.row == 0 {
-            self.doSignInAction()
-        }
-    }
-    
-    func doSignInAction() {
+    @IBAction func doSignInAction() {
         ZDWebService.sharedWebService().loginWithUserName("13818111655", password: "123456", { (error, resultDic) -> Void in
             println(resultDic)
             if (error == nil) {
                 if self.delegate != nil {
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         self.delegate!.loginViewControllerDidLoggedIn(self)
-                    })
                 }
             }
         })
     }
 
-
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.registerButton.layer.borderColor = UIColor.lightGrayColor().CGColor!
+        self.registerButton.layer.borderWidth = 0.5
+    }
+    
 }

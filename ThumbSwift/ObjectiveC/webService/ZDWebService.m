@@ -96,7 +96,8 @@
     
 //    ZDNSURLSession *session = [[ZDNSURLSession alloc] initWithRequest:req completionHandler:handler];
 //    [session startSession];
-    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionConfiguration *conf = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:conf delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     [[session dataTaskWithRequest:req completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error) {
             handler(error,nil);

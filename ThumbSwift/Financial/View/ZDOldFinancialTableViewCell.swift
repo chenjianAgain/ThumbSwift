@@ -10,13 +10,21 @@ import UIKit
 
 class ZDOldFinancialTableViewCell: UITableViewCell {
 
-    var item: ZDOldFinancialItem? {
+    var product: Product? {
         didSet {
-            self.itemNameLabel!.text = item!.itemName
+            self.productNameLabel.text = product!.name
+            self.predictInterestLabel.text = product!.predictInterest
+            self.atLeastMoneyLabel.text = "起投金额 " + product!.atLeastMoney!
+            self.closePeriodLabel.text = "锁定期 " + product!.closePeriod!
+            self.iconImageView.image = UIImage(named: product!.icon!)
         }
     }
-    
-    @IBOutlet weak var itemNameLabel: UILabel?
+
+    @IBOutlet weak var productNameLabel: UILabel!
+    @IBOutlet weak var predictInterestLabel: UILabel!
+    @IBOutlet weak var atLeastMoneyLabel: UILabel!
+    @IBOutlet weak var closePeriodLabel:UILabel!
+    @IBOutlet weak var iconImageView: UIImageView!
     
     class func cellWithTableView(tableView: UITableView) -> ZDOldFinancialTableViewCell? {
         var ID = "old financial cell"

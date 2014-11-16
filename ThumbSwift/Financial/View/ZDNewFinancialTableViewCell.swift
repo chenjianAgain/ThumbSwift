@@ -9,6 +9,7 @@
 import UIKit
 
 class ZDNewFinancialTableViewCell: UITableViewCell {
+    
 
     class func cellWithTableView(tableView: UITableView) -> ZDNewFinancialTableViewCell? {
         var ID = "new financial cell"
