@@ -33,11 +33,10 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zW6-fx-xY6">
-                                    <rect key="frame" x="155" y="8" width="290" height="54"/>
+                                    <rect key="frame" x="8" y="8" width="584" height="54"/>
                                     <color key="backgroundColor" red="1" green="0.4549019608" blue="0.41568627450000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="54" id="Am8-lt-ewg"/>
-                                        <constraint firstAttribute="width" constant="290" id="yA9-mp-LXO"/>
+                                        <constraint firstAttribute="height" constant="54" id="SyB-tm-oDr"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                     <state key="normal" title="登陆">
@@ -48,28 +47,27 @@
                                         <action selector="doSignInAction" destination="b9t-MZ-hdr" eventType="touchUpInside" id="Kb1-07-Odr"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1mi-Yo-okz">
-                                    <rect key="frame" x="155" y="70" width="290" height="54"/>
+                                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6K0-Pi-kWV">
+                                    <rect key="frame" x="517" y="70" width="75" height="30"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="290" id="8YH-wh-oNz"/>
-                                        <constraint firstAttribute="height" constant="54" id="KwN-Vb-nvr"/>
+                                        <constraint firstAttribute="height" constant="30" id="NVt-Mb-PMm"/>
+                                        <constraint firstAttribute="width" constant="75" id="s20-SZ-cA9"/>
                                     </constraints>
-                                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                    <state key="normal" title="注册">
+                                    <state key="normal" title="忘记密码？">
                                         <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
                                     <connections>
-                                        <segue destination="d4w-wZ-4ob" kind="show" id="s9b-zz-uRh"/>
+                                        <segue destination="TUk-7x-GhE" kind="show" id="Q76-kL-cBd"/>
                                     </connections>
                                 </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="zW6-fx-xY6" firstAttribute="top" secondItem="Lfy-De-Dre" secondAttribute="top" constant="8" id="T5S-qp-efp"/>
-                                <constraint firstAttribute="centerX" secondItem="1mi-Yo-okz" secondAttribute="centerX" id="gSE-Se-fM4"/>
-                                <constraint firstAttribute="centerX" secondItem="zW6-fx-xY6" secondAttribute="centerX" id="qGa-8u-Ptv"/>
-                                <constraint firstItem="1mi-Yo-okz" firstAttribute="top" secondItem="zW6-fx-xY6" secondAttribute="bottom" constant="8" id="sws-NC-HEW"/>
+                                <constraint firstItem="zW6-fx-xY6" firstAttribute="leading" secondItem="Lfy-De-Dre" secondAttribute="leading" constant="8" id="A8w-Wb-XoV"/>
+                                <constraint firstAttribute="trailing" secondItem="6K0-Pi-kWV" secondAttribute="trailing" constant="8" id="ZyY-oa-hKe"/>
+                                <constraint firstItem="zW6-fx-xY6" firstAttribute="top" secondItem="Lfy-De-Dre" secondAttribute="top" constant="8" id="ep0-Hb-oQX"/>
+                                <constraint firstAttribute="trailing" secondItem="zW6-fx-xY6" secondAttribute="trailing" constant="8" id="jh0-Pi-uSO"/>
                             </constraints>
                         </view>
                         <sections>
@@ -146,15 +144,14 @@
                                 <action selector="cancel" destination="b9t-MZ-hdr" id="EeN-di-S3V"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="忘记密码" id="Gav-P0-cWU">
+                        <barButtonItem key="rightBarButtonItem" title="注册" id="Gav-P0-cWU">
                             <connections>
-                                <segue destination="TUk-7x-GhE" kind="show" id="FRc-dc-tTj"/>
+                                <segue destination="d4w-wZ-4ob" kind="show" id="cio-Dl-SZQ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="passwordTextField" destination="3le-wa-PPz" id="6t7-Kj-oVw"/>
-                        <outlet property="registerButton" destination="1mi-Yo-okz" id="am2-4u-gzN"/>
                         <outlet property="usernameTextField" destination="wel-Mu-1QS" id="hpn-6Q-MDR"/>
                     </connections>
                 </tableViewController>

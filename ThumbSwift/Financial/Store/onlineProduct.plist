@@ -14,7 +14,7 @@
 		<key>predictInterest</key>
 		<string>10%(年)</string>
 		<key>atLeastMoney</key>
-		<string>10万元</string>
+		<string>1000元</string>
 		<key>feature</key>
 		<string>固定期限固定收益，更稳健</string>
 		<key>objectCustomer</key>
@@ -32,7 +32,7 @@
 		<key>predictInterest</key>
 		<string>8%(年)</string>
 		<key>atLeastMoney</key>
-		<string>10万元</string>
+		<string>1000元</string>
 		<key>feature</key>
 		<string>固定期限固定收益，更稳健</string>
 		<key>objectCustomer</key>
@@ -50,7 +50,7 @@
 		<key>predictInterest</key>
 		<string>9%(年)</string>
 		<key>atLeastMoney</key>
-		<string>10万元</string>
+		<string>1000元</string>
 		<key>feature</key>
 		<string>循环出借方式，获取较高预期收益</string>
 		<key>objectCustomer</key>

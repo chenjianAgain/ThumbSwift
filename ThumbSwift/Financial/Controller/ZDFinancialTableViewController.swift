@@ -33,6 +33,12 @@ class ZDFinancialTableViewController: BaseViewController, ZDSelectionViewControl
         self.hideExtraCellLine()
         self.data = ZDFinancialStore.sharedInstance.products
     }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
 
     override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
 
@@ -47,7 +53,6 @@ class ZDFinancialTableViewController: BaseViewController, ZDSelectionViewControl
     
     func segmentControlDidChanged(viewController: UIViewController, selectedIndex: NSInteger)
     {
-        print("okokok")
         self.segmentControllSelectedIndex = selectedIndex
         if selectedIndex == 0 {
             self.data = ZDFinancialStore.sharedInstance.products
@@ -88,7 +93,11 @@ class ZDFinancialTableViewController: BaseViewController, ZDSelectionViewControl
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         self.selectedProduct = self.data![indexPath.row] as? ZDProduct
-        self.performSegueWithIdentifier("Show Offline Detail", sender: self)
+        if self.segmentControllSelectedIndex == 0 {
+            self.performSegueWithIdentifier("Show Offline Detail", sender: self)
+        } else if self.segmentControllSelectedIndex == 1 {
+            self.performSegueWithIdentifier("Show Online Detail", sender: self)
+        }
     }
     
     // MARK: - Navigation
@@ -101,6 +110,9 @@ class ZDFinancialTableViewController: BaseViewController, ZDSelectionViewControl
         } else if segue.identifier == "Show Offline Detail" {
             var offlineApplyViewController: ZDOfflineApplyViewController = segue.destinationViewController as ZDOfflineApplyViewController
             offlineApplyViewController.product = self.selectedProduct
+        } else if segue.identifier == "Show Online Detail" {
+            var onlineApplyViewController = segue.destinationViewController as ZDOnlineApplyViewController
+            onlineApplyViewController.product = self.selectedProduct
         }
         
         

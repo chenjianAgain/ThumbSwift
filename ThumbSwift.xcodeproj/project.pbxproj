@@ -21,6 +21,7 @@
 		1819A86B1A137B71005F24C3 /* ZDMyAccounViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1819A86A1A137B71005F24C3 /* ZDMyAccounViewController.swift */; };
 		183DA2451A14D81D00678E81 /* ZDAccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183DA2441A14D81D00678E81 /* ZDAccountTableViewCell.swift */; };
 		183DA2471A14E4A900678E81 /* ZDAccountSecurityTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 183DA2461A14E4A900678E81 /* ZDAccountSecurityTableViewController.swift */; };
+		18B86F501A2F4D8C0007670C /* ZDOnlineApplyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18B86F4F1A2F4D8C0007670C /* ZDOnlineApplyViewController.swift */; };
 		18DA99C31A245449007FE052 /* ZDNSURLSession.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DA99BC1A245449007FE052 /* ZDNSURLSession.m */; };
 		18DA99C41A245449007FE052 /* ZDWebService+URLString.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DA99BE1A245449007FE052 /* ZDWebService+URLString.m */; };
 		18DA99C51A245449007FE052 /* ZDWebService.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DA99C01A245449007FE052 /* ZDWebService.m */; };
@@ -84,6 +85,7 @@
 		1819A86A1A137B71005F24C3 /* ZDMyAccounViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZDMyAccounViewController.swift; sourceTree = "<group>"; };
 		183DA2441A14D81D00678E81 /* ZDAccountTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZDAccountTableViewCell.swift; sourceTree = "<group>"; };
 		183DA2461A14E4A900678E81 /* ZDAccountSecurityTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZDAccountSecurityTableViewController.swift; sourceTree = "<group>"; };
+		18B86F4F1A2F4D8C0007670C /* ZDOnlineApplyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZDOnlineApplyViewController.swift; sourceTree = "<group>"; };
 		18DA99BB1A245449007FE052 /* ZDNSURLSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZDNSURLSession.h; sourceTree = "<group>"; };
 		18DA99BC1A245449007FE052 /* ZDNSURLSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZDNSURLSession.m; sourceTree = "<group>"; };
 		18DA99BD1A245449007FE052 /* ZDWebService+URLString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ZDWebService+URLString.h"; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 				18DB03A01A18819900AFA261 /* ZDFinancialTableViewController.swift */,
 				18DB03A11A18819900AFA261 /* ZDSelectionViewController.swift */,
 				18DB03BE1A18A12300AFA261 /* ZDOfflineApplyViewController.swift */,
+				18B86F4F1A2F4D8C0007670C /* ZDOnlineApplyViewController.swift */,
 				18DB03C01A18A2DB00AFA261 /* ShowOfflineHeadViewController.swift */,
 			);
 			path = Controller;
@@ -490,6 +493,7 @@
 				183DA2471A14E4A900678E81 /* ZDAccountSecurityTableViewController.swift in Sources */,
 				1819A80B1A136DDF005F24C3 /* ZDMainTabbarController.swift in Sources */,
 				18DA99C61A245449007FE052 /* ZDWebserviceDataParse.m in Sources */,
+				18B86F501A2F4D8C0007670C /* ZDOnlineApplyViewController.swift in Sources */,
 				18DA99CD1A24AD05007FE052 /* ZDLoginTableViewController.swift in Sources */,
 				18DA99C31A245449007FE052 /* ZDNSURLSession.m in Sources */,
 				18E17ED91A2DF1FF003445DC /* ZDCommonSenseViewController.swift in Sources */,

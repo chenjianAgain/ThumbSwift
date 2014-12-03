@@ -27,16 +27,11 @@ class ShowOfflineHeadViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.productNameLabel.text = product!.name
-        self.predictInterestLabel.text = product!.predictInterest
+        self.productNameLabel.text = product?.name
+        self.predictInterestLabel.text = product?.predictInterest
         self.atLeastMoneyLabel.text = "起投金额 " + product!.atLeastMoney!
         self.closePeriodLabel.text = "锁定期 " + product!.closePeriod!
         // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     @IBAction func back() {

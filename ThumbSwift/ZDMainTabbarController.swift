@@ -56,7 +56,7 @@ class ZDMainTabbarController: UITabBarController, UITabBarControllerDelegate, ZD
             var tabBarItem = self.tabBar.items?[i] as UITabBarItem
             switch(i) {
                 case 0:
-                    tabBarItem.title = "我的理财"
+                    tabBarItem.title = "投资理财"
                     tabBarItem.image = UIImage(named: "ico_bottom_fortune")?.imageWithRenderingMode(.AlwaysOriginal)
                     tabBarItem.selectedImage = UIImage(named: "ico_bottom_fortune_on")?.imageWithRenderingMode(.AlwaysOriginal)
                     break

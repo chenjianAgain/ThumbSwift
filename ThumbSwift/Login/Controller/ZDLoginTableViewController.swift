@@ -15,7 +15,6 @@ protocol ZDLoginTableViewControllerDelegate {
 
 class ZDLoginTableViewController: BaseViewController {
     
-    @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var usernameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
     
@@ -41,9 +40,7 @@ class ZDLoginTableViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.registerButton.layer.borderColor = UIColor.lightGrayColor().CGColor!
-        self.registerButton.layer.borderWidth = 0.5
-        self.usernameTextField.text = "13052116682"
+        self.usernameTextField.text = "15806193165"
         self.passwordTextField.text = "123456"
     }
     

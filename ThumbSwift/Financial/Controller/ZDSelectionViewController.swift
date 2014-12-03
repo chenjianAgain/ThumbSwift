@@ -45,11 +45,11 @@ class ZDSelectionViewController: UIViewController {
         button.selected = true
 
         UIView.animateWithDuration(0.5, animations: {
-            if self.selectedIndex == 1 {
-                self.leadingConstraint.priority = 0
-            } else {
-                self.trailingConstraint.priority = 0
-            }
+//            if self.selectedIndex == 1 {
+//                self.leadingConstraint.priority = 0
+//            } else {
+//                self.trailingConstraint.priority = 0
+//            }
         })
     }
 }

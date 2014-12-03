@@ -28,9 +28,7 @@ class ZDMyAccounViewController: UIViewController, UITableViewDelegate, ZDAccount
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.navigationController?.navigationBar.hidden = true
-        
-
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
     // MARK: - ZDAccountSecurityTableViewControllerDelegate
