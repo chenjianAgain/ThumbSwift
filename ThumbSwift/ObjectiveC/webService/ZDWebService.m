@@ -12,8 +12,8 @@
 #import "ZDWebserviceDataParse.h"
 
 #define DefaultCRMPublishService  @"300001"//crm公共接口转发
-#define DefaultProjectNo    @"D"
-#define secret @"bb369ff752074e2ba055f32da6bc3114"
+#define DefaultProjectNo    @"D"//大拇指项目
+#define secret @"bb369ff752074e2ba055f32da6bc3114"//密钥匙
 
 @interface ZDWebService ()
 
@@ -21,6 +21,7 @@
 
 @implementation ZDWebService
 
+//登陆
 - (void)loginWithUserName:(NSString *)userName
                  password:(NSString *)password
                completion:(void(^)(NSError *error,NSDictionary *resultDic))handler
@@ -34,6 +35,264 @@
     
     [self fetchByWebserviceURLString:urlString dictionary:oriDic handler:handler];
     
+}
+
+//注册
+- (void)registerWithValidateCode:(NSString *)validateCode
+                          mobile:(NSString *)mobile
+                        password:(NSString *)password
+                      completion:(void(^)(NSError *error,NSDictionary *resultDic))handler
+{
+    password = [NSString md5:password];
+    NSDictionary *oriDic = @{
+                             @"validateCode":validateCode,
+                             @"mobile":mobile,
+                             @"password":password
+                             };
+    NSString *urlString = [self URLStringForRegister];
+    
+    [self fetchByWebserviceURLString:urlString dictionary:oriDic handler:handler];
+}
+
+//获取验证码,oprType:操作类型(”0”:注册, ”1”:重置密码)
+- (void)getValidateCodeWithMobile:(NSString *)mobile
+                          oprType:(NSString *)oprType
+                       completion:(void(^)(NSError *error,NSDictionary *resultDic))handler
+{
+    NSDictionary *oriDic = @{
+                             @"mobile":mobile,
+                             @"oprType":oprType
+                             };
+    NSString *urlString = [self URLStringForGetValidateCode];
+    
+    [self fetchByWebserviceURLString:urlString dictionary:oriDic handler:handler];
+}
+
+//身份证绑定
+- (void)idCardBindWithMobile:(NSString *)mobile
+                        name:(NSString *)name
+                  idCardBind:(NSString *)idCardBind
+                completion:(void(^)(NSError *error,NSDictionary *resultDic))handler
+{
+    NSDictionary *oriDic = @{
+                             @"mobile":mobile,
+                             @"name":name,
+                             @"idCardCode":idCardBind
+                             };
+    NSString *urlString = [self URLStringForIdCardBind];
+    
+    [self fetchByWebserviceURLString:urlString dictionary:oriDic handler:handler];
+}
+
+//忘记密码后重设密码
+- (void)resetPasswordWithValidateCode:(NSString *)validateCode
+                               mobile:(NSString *)mobile
+                             password:(NSString *)password
+                           completion:(void (^)(NSError *, NSDictionary *))handler
+{
+    password = [NSString md5:password];
+    NSDictionary *oriDic = @{
+                             @"validateCode":validateCode,
+                             @"mobile":mobile,
+                             @"password":password
+                             };
+    NSString *urlString = [self URLStringForForgetAndResetPassword];
+    
+    [self fetchByWebserviceURLString:urlString dictionary:oriDic handler:handler];
+}
+
+//获取网点
+/*
+    netSiteType:网点类型(“-1”所有网点，”0”理财网点，”1”贷款网点) 我们传0
+    mapType:地图类型(“00”google，”01”baidu)
+    pageNo:页码
+    pageSize:每页显示数量
+    longitude:当前经度
+    latitude:当前纬度
+ */
+- (void)getNetSiteWithNetSiteType:(NSString *)netSiteType
+                          mapType:(NSString *)mapType
+                           pageNo:(NSString *)pageNo
+                         pageSize:(NSString *)pageSize
+                        longitude:(NSString *)longitude
+                         latitude:(NSString *)latitude
+                       completion:(void (^)(NSError *, NSDictionary *))handler
+{
+    NSDictionary *oriDic = @{
+                             @"netSiteType":netSiteType,
+                             @"mapType":mapType,
+                             @"pageNo":pageNo,
+                             @"pageSize":pageSize,
+                             @"x":longitude,
+                             @"y":latitude
+                             };
+    NSString *urlString = [self URLStringForGetNetSite];
+    
+    [self fetchByWebserviceURLString:urlString dictionary:oriDic handler:handler];
+}
+
+//修改密码
+- (void)modifyPasswordWithMobile:(NSString *)mobile
+                          oldpwd:(NSString *)oldpwd
+                          newpwd:(NSString *)newpwd
+                      completion:(void(^)(NSError *error,NSDictionary *resultDic))handler
+{
+    oldpwd = [NSString md5:oldpwd];
+    newpwd = [NSString md5:newpwd];
+    
+    NSDictionary *oriDic = @{
+                             @"mobile":mobile,
+                             @"oldpwd":oldpwd,
+                             @"newpwd":newpwd
+                             };
+    NSString *urlString = [self URLStringForUpdatePassword];
+    
+    [self fetchByWebserviceURLString:urlString dictionary:oriDic handler:handler];
+}
+
+//提交产品订单,feProduct:产品id，feAmount：订单金额，feRequestDate：订单创建时间，
+- (void)submitProductOrderWithFeProduct:(NSString *)feProduct feAmount:(NSString *)feAmount feRequestDate:(NSString *)feRequestDate customerid:(NSString *)customerid managerId:(NSString *)managerId managerCode:(NSString *)managerCode completion:(void (^)(NSError *, NSDictionary *))handler
+{
+    NSDictionary *oriDic;
+    if (managerId.length) {
+        oriDic = @{
+                 @"feProduct":feProduct,
+                 @"feAmount":feAmount,
+                 @"feRequestDate":feRequestDate,
+                 @"customerId":customerid,
+                 @"managerId":managerId
+                 };
+    } else {
+        oriDic = @{
+                   @"feProduct":feProduct,
+                   @"feAmount":feAmount,
+                   @"feRequestDate":feRequestDate,
+                   @"customerId":customerid,
+                   @"managerCode":managerCode
+                   };
+    }
+    
+    NSString *urlString = [self URLStringForSubmitProductOrder];
+    [self fetchByWebserviceURLString:urlString dictionary:oriDic handler:handler];
+}
+
+//线下理财申请  {"businessType":"证大年丰","city":"","mobile":"13873627712"}
+- (void)applyBusinessWithBusinessType:(NSString *)businessType
+                               mobile:(NSString *)mobile
+                                 city:(NSString *)city
+                           completion:(void(^)(NSError *error,NSDictionary *resultDic))handler
+{
+    NSDictionary *oriDic = @{
+                             @"businessType":businessType,
+                             @"mobile":mobile,
+                             @"city":city
+                             };
+    NSString *urlString = [self URLStringForApplyBusiness];
+    [self fetchByWebserviceURLString:urlString dictionary:oriDic handler:handler];
+}
+
+//意见反馈  username：有就传，没有传空，operDate：提交时间（yyyy-MM-ddHH:mm:ss），appType：iphoen or ipad，system：iOS or android，source：来源（1-crmApp、2-thumbsApp），feedbackType：意见类型（1-业务反馈、2-系统反馈）
+- (void)commitFeedbackWithUserName:(NSString *)userName
+                           context:(NSString *)context
+                          operDate:(NSString *)operDate
+                           appType:(NSString *)appType
+                        appVersion:(NSString *)appVersion
+                            system:(NSString *)system
+                     systemVersion:(NSString *)systemVersion
+                            source:(NSString *)source
+                      feedbackType:(NSString *)feedbackType
+                        completion:(void(^)(NSError *error,NSDictionary *resultDic))handler
+{
+    NSDictionary *oriDic = @{
+                             @"keyValue":userName,
+                             @"context":context,
+                             @"operDate":operDate,
+                             @"appType":appType,
+                             @"appVersion":appVersion,
+                             @"system":system,
+                             @"systemVersion":systemVersion,
+                             @"source":source,
+                             @"feedbackType":feedbackType
+                             };
+    NSString *urlString = [self URLStringForCommitFeedback];
+    [self fetchByWebserviceURLString:urlString dictionary:oriDic handler:handler];
+}
+
+//获取理财产品列表 proType:产品类别对应值 2 线下理财产品 3 线上理财产品,如需查询多种type，参数以“，”分隔符传输
+- (void)getProductListsWtihProType:(NSString *)proType
+                        completion:(void(^)(NSError *error,NSDictionary *resultDic))handler
+{
+    NSDictionary *oriDic = @{
+                             @"proType":proType
+                             };
+    NSString *urlString = [self URLStringForGetProductLists];
+    [self fetchByWebserviceURLString:urlString dictionary:oriDic handler:handler];
+}
+
+//查询单个理财产品信息   proId:产品id
+- (void)getProductDetailWithProId:(NSString *)proId
+                       completion:(void(^)(NSError *error,NSDictionary *resultDic))handler
+{
+    NSDictionary *oriDic = @{
+                             @"proId":proId
+                             };
+    NSString *urlString = [self URLStringForGetProductLists];
+    [self fetchByWebserviceURLString:urlString dictionary:oriDic handler:handler];
+}
+
+//获取客户经理信息 managerCode:客户经理邀请码
+- (void)getManagerInfoWithManagerCode:(NSString *)managerCode
+                           completion:(void(^)(NSError *error,NSDictionary *resultDic))handler
+{
+    NSDictionary *oriDic = @{
+                             @"managerCode":managerCode
+                             };
+    NSString *urlString = [self URLStringForGetManagerInfo];
+    [self fetchByWebserviceURLString:urlString dictionary:oriDic handler:handler];
+}
+
+//获取某个客户订单列表
+- (void)getProductOrderListsWithCustomerId:(NSString *)customerId
+                                completion:(void(^)(NSError *error,NSDictionary *resultDic))handler
+{
+    NSDictionary *oriDic = @{
+                             @"customerId":customerId
+                             };
+    NSString *urlString = [self URLStringForGetProductOrderListsOfCustomer];
+    [self fetchByWebserviceURLString:urlString dictionary:oriDic handler:handler];
+}
+
+//获取某个产品订单详细信息
+- (void)getProductOrderDetailWithBusiId:(NSString *)busiId
+                             completion:(void(^)(NSError *error,NSDictionary *resultDic))handler
+{
+    NSDictionary *oriDic = @{
+                             @"busiId":busiId
+                             };
+    NSString *urlString = [self URLStringForGetProductOrderListsOfCustomer];
+    [self fetchByWebserviceURLString:urlString dictionary:oriDic handler:handler];
+}
+
+//获取交易明细列表
+- (void)getTransactionDetailWithCustomerId:(NSString *)customerId
+                                completion:(void(^)(NSError *error,NSDictionary *resultDic))handler
+{
+    NSDictionary *oriDic = @{
+                             @"customerId":customerId
+                             };
+    NSString *urlString = [self URLStringForGetTransactoinDetailOfCustomer];
+    [self fetchByWebserviceURLString:urlString dictionary:oriDic handler:handler];
+}
+
+//获取债权列表    investId:投资编号
+- (void)getLoanListWithInvestId:(NSString *)investId
+                     completion:(void(^)(NSError *error,NSDictionary *resultDic))handler
+{
+    NSDictionary *oriDic = @{
+                             @"investId":investId
+                             };
+    NSString *urlString = [self URLStringForGetLoanList];
+    [self fetchByWebserviceURLString:urlString dictionary:oriDic handler:handler];
 }
 
 #pragma mark - 共用请求方法
@@ -96,8 +355,9 @@
     
 //    ZDNSURLSession *session = [[ZDNSURLSession alloc] initWithRequest:req completionHandler:handler];
 //    [session startSession];
-    NSURLSessionConfiguration *conf = [NSURLSessionConfiguration defaultSessionConfiguration];
-    NSURLSession *session = [NSURLSession sessionWithConfiguration:conf delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
+//    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionConfiguration *configuration = [NSURLSessionConfiguration defaultSessionConfiguration];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:configuration delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
     [[session dataTaskWithRequest:req completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
         if (error) {
             handler(error,nil);

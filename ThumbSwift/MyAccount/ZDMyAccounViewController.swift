@@ -17,7 +17,8 @@ protocol ZDMyAccounViewControllerDelegate {
 class ZDMyAccounViewController: UIViewController, UITableViewDelegate, ZDAccountSecurityTableViewControllerDelegate {
     
     var delegate: ZDMyAccounViewControllerDelegate?
-    @IBOutlet weak var tableView: UITableView?
+    @IBOutlet weak var tableView: UITableView!
+
     
     @IBAction func logout() {
         if delegate != nil {
@@ -28,6 +29,8 @@ class ZDMyAccounViewController: UIViewController, UITableViewDelegate, ZDAccount
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.navigationBar.hidden = true
+        
+
     }
     
     // MARK: - ZDAccountSecurityTableViewControllerDelegate

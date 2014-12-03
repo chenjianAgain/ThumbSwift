@@ -15,6 +15,9 @@ protocol ZDSelectionViewControllerDelegate {
 
 class ZDSelectionViewController: UIViewController {
     
+    @IBOutlet weak var trailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
+    
     var delegate: ZDSelectionViewControllerDelegate?
     var selectedIndex: NSInteger = 0
     
@@ -42,13 +45,11 @@ class ZDSelectionViewController: UIViewController {
         button.selected = true
 
         UIView.animateWithDuration(0.5, animations: {
-            let frame = self.movingView.frame
-            let originX: CGFloat = frame.width
-            let x = originX * CGFloat(index)
-            let y = frame.origin.y
-            let width = frame.width
-            let height = frame.height
-            self.movingView.frame = CGRectMake(x, y, width, height)
+            if self.selectedIndex == 1 {
+                self.leadingConstraint.priority = 0
+            } else {
+                self.trailingConstraint.priority = 0
+            }
         })
     }
 }

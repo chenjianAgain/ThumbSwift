@@ -17,7 +17,7 @@ protocol ShowOfflineHeadViewControllerDelegate {
 class ShowOfflineHeadViewController: UIViewController {
 
     
-    var product: Product? 
+    var product: ZDProduct? 
     @IBOutlet weak var productNameLabel: UILabel!
     @IBOutlet weak var predictInterestLabel: UILabel!
     @IBOutlet weak var atLeastMoneyLabel: UILabel!

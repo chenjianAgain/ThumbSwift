@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6249" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="bmf-4f-EmR">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6249" systemVersion="14C68m" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="bmf-4f-EmR">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6243"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -153,7 +153,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="passwordTextField" destination="3le-wa-PPz" id="6t7-Kj-oVw"/>
                         <outlet property="registerButton" destination="1mi-Yo-okz" id="am2-4u-gzN"/>
+                        <outlet property="usernameTextField" destination="wel-Mu-1QS" id="hpn-6Q-MDR"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dOe-Qe-Nh0" userLabel="First Responder" sceneMemberID="firstResponder"/>

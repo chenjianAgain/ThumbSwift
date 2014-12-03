@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Product: NSObject {
+class ZDProduct: NSObject {
     var productId: NSString?
     var icon: NSString?
     var name: NSString?

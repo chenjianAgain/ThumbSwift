@@ -11,9 +11,103 @@
 
 @interface ZDWebService : NSObject<NSXMLParserDelegate>
 
+//登录
 - (void)loginWithUserName:(NSString *)userName
                  password:(NSString *)password
                completion:(void(^)(NSError *error,NSDictionary *resultDic))handler;
+
+//注册 
+- (void)registerWithValidateCode:(NSString *)validateCode
+                          mobile:(NSString *)mobile
+                        password:(NSString *)password
+                      completion:(void(^)(NSError *error,NSDictionary *resultDic))handler;
+
+//获取验证码,oprType:操作类型(”0”:注册, ”1”:重置密码)
+- (void)getValidateCodeWithMobile:(NSString *)mobile
+                          oprType:(NSString *)oprType
+                       completion:(void(^)(NSError *error,NSDictionary *resultDic))handler;
+
+//身份证绑定
+- (void)idCardBindWithMobile:(NSString *)mobile
+                        name:(NSString *)name
+                  idCardBind:(NSString *)idCardBind
+                  completion:(void(^)(NSError *error,NSDictionary *resultDic))handler;
+
+//忘记密码后重设密码
+- (void)resetPasswordWithValidateCode:(NSString *)validateCode
+                               mobile:(NSString *)mobile
+                             password:(NSString *)password
+                           completion:(void(^)(NSError *error,NSDictionary *resultDic))handler;
+
+//获取网点
+- (void)getNetSiteWithNetSiteType:(NSString *)netSiteType
+                          mapType:(NSString *)mapType
+                           pageNo:(NSString *)pageNo
+                         pageSize:(NSString *)pageSize
+                        longitude:(NSString *)longitude
+                         latitude:(NSString *)latitude
+                       completion:(void(^)(NSError *error,NSDictionary *resultDic))handler;
+
+//修改密码
+- (void)modifyPasswordWithMobile:(NSString *)mobile
+                          oldpwd:(NSString *)oldpwd
+                          newpwd:(NSString *)newpwd
+                      completion:(void(^)(NSError *error,NSDictionary *resultDic))handler;
+
+//提交产品订单
+- (void)submitProductOrderWithFeProduct:(NSString *)feProduct
+                              feAmount:(NSString *)feAmount
+                         feRequestDate:(NSString *)feRequestDate
+                            customerid:(NSString *)customerid
+                             managerId:(NSString *)managerId
+                           managerCode:(NSString *)managerCode
+                            completion:(void(^)(NSError *error,NSDictionary *resultDic))handler;
+
+//线下理财申请
+- (void)applyBusinessWithBusinessType:(NSString *)businessType
+                               mobile:(NSString *)mobile
+                                 city:(NSString *)city
+                           completion:(void(^)(NSError *error,NSDictionary *resultDic))handler;
+
+//意见反馈
+- (void)commitFeedbackWithUserName:(NSString *)userName
+                           context:(NSString *)context
+                          operDate:(NSString *)operDate
+                           appType:(NSString *)appType
+                        appVersion:(NSString *)appVersion
+                            system:(NSString *)system
+                     systemVersion:(NSString *)systemVersion
+                            source:(NSString *)source
+                      feedbackType:(NSString *)feedbackType
+                        completion:(void(^)(NSError *error,NSDictionary *resultDic))handler;
+
+//获取理财产品列表
+- (void)getProductListsWtihProType:(NSString *)proType
+                        completion:(void(^)(NSError *error,NSDictionary *resultDic))handler;
+
+//查询单个理财产品信息
+- (void)getProductDetailWithProId:(NSString *)proId
+                       completion:(void(^)(NSError *error,NSDictionary *resultDic))handler;
+
+//获取客户经理信息
+- (void)getManagerInfoWithManagerCode:(NSString *)managerCode
+                           completion:(void(^)(NSError *error,NSDictionary *resultDic))handler;
+
+//获取某个客户订单列表
+- (void)getProductOrderListsWithCustomerId:(NSString *)customerId
+                                completion:(void(^)(NSError *error,NSDictionary *resultDic))handler;
+
+//获取某个产品订单详细信息
+- (void)getProductOrderDetailWithBusiId:(NSString *)busiId
+                             completion:(void(^)(NSError *error,NSDictionary *resultDic))handler;
+
+//获取交易明细列表
+- (void)getTransactionDetailWithCustomerId:(NSString *)customerId
+                                completion:(void(^)(NSError *error,NSDictionary *resultDic))handler;
+
+//获取债权列表
+- (void)getLoanListWithInvestId:(NSString *)investId
+                     completion:(void(^)(NSError *error,NSDictionary *resultDic))handler;
 
 +(ZDWebService *)sharedWebService;
 @end

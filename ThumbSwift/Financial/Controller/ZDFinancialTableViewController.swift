@@ -8,30 +8,53 @@
 
 import UIKit
 
-class ZDFinancialTableViewController: UITableViewController, ZDSelectionViewControllerDelegate {
+class ZDFinancialTableViewController: BaseViewController, ZDSelectionViewControllerDelegate {
     
-//    var data = ["证大年丰","证大月收","证大季喜","证大岁悦","证大双鑫"]
     var data: NSArray?
-    var selectedProduct: Product?
+    var selectedProduct: ZDProduct?
     var segmentControllSelectedIndex = 0
+    
+    var _viewController: ZDSelectionViewController?
+    var viewController: ZDSelectionViewController? {
+        get {
+            if _viewController == nil {
+                var storyboard = UIStoryboard(name: "StoryboardOne", bundle: nil)
+                _viewController = storyboard.instantiateViewControllerWithIdentifier("ZDSelectionViewController") as? ZDSelectionViewController
+                _viewController?.delegate = self
+            }
+            return _viewController
+        }
+        
+    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.hideExtraCellLine()
         self.data = ZDFinancialStore.sharedInstance.products
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+
+        return self.viewController?.view
+    }
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50;
     }
     
     // MARK: - ZDSelectionViewControllerDelegate
     
     func segmentControlDidChanged(viewController: UIViewController, selectedIndex: NSInteger)
     {
-//        self.segmentControllSelectedIndex = selectedIndex
-//        self.tableView.reloadData()
+        print("okokok")
+        self.segmentControllSelectedIndex = selectedIndex
+        if selectedIndex == 0 {
+            self.data = ZDFinancialStore.sharedInstance.products
+        } else if selectedIndex == 1 {
+            self.data = ZDFinancialStore.sharedInstance.onlineProducts
+        }
+        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -52,15 +75,11 @@ class ZDFinancialTableViewController: UITableViewController, ZDSelectionViewCont
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         // Configure the cell...
         var cell: UITableViewCell
-        if self.segmentControllSelectedIndex == 0 {
-            let oldCell = ZDOldFinancialTableViewCell.cellWithTableView(self.tableView) as ZDOldFinancialTableViewCell!
-            var item = data![indexPath.row] as Product
-            oldCell.product = item
-            cell = oldCell
-        } else {
-            let newCell = ZDNewFinancialTableViewCell.cellWithTableView(self.tableView) as ZDNewFinancialTableViewCell!
-            cell = newCell
-        }
+        let oldCell = ZDOldFinancialTableViewCell.cellWithTableView(self.tableView) as ZDOldFinancialTableViewCell!
+        var item = data![indexPath.row] as ZDProduct
+        oldCell.product = item
+        cell = oldCell
+
         return cell
     }
     
@@ -68,7 +87,7 @@ class ZDFinancialTableViewController: UITableViewController, ZDSelectionViewCont
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
-        self.selectedProduct = self.data![indexPath.row] as? Product
+        self.selectedProduct = self.data![indexPath.row] as? ZDProduct
         self.performSegueWithIdentifier("Show Offline Detail", sender: self)
     }
     

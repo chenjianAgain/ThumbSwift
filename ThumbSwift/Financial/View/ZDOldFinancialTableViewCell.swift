@@ -10,12 +10,12 @@ import UIKit
 
 class ZDOldFinancialTableViewCell: UITableViewCell {
 
-    var product: Product? {
+    var product: ZDProduct? {
         didSet {
             self.productNameLabel.text = product!.name
             self.predictInterestLabel.text = product!.predictInterest
             self.atLeastMoneyLabel.text = "起投金额 " + product!.atLeastMoney!
-            self.closePeriodLabel.text = "锁定期 " + product!.closePeriod!
+            self.closePeriodLabel.text = "封闭期 " + product!.closePeriod!
             self.iconImageView.image = UIImage(named: product!.icon!)
         }
     }

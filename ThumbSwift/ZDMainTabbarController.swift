@@ -10,6 +10,10 @@ import UIKit
 
 class ZDMainTabbarController: UITabBarController, UITabBarControllerDelegate, ZDLoginTableViewControllerDelegate, ZDMyAccounViewControllerDelegate {
 
+    var hasBeenLoggedIn: Bool?
+    var userId: NSString?
+    var password: NSString?
+    
     override func awakeFromNib() {
         var nav1 = UIStoryboard(name: "StoryboardOne", bundle: nil).instantiateInitialViewController() as UIViewController
         var nav2 = UIStoryboard(name: "StoryboardTwo", bundle: nil).instantiateInitialViewController() as UINavigationController
@@ -21,6 +25,30 @@ class ZDMainTabbarController: UITabBarController, UITabBarControllerDelegate, ZD
         accountVC.delegate = self
         self.delegate = self
         self.setCustomTabBar()
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        self.userId = NSUserDefaults.standardUserDefaults().objectForKey("DefaultCurrentUserId") as? NSString
+        self.hasBeenLoggedIn = self.userId != nil
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if hasBeenLoggedIn! {
+            self.password = NSUserDefaults.standardUserDefaults().objectForKey("DefaultCurrentPassword") as? NSString
+            ZDWebService.sharedWebService().loginWithUserName(self.userId!, password: self.password!, completion:  { (error, resultDic) -> Void in
+                println(resultDic)
+                if (error == nil) {
+                    var infos = resultDic["infos"] as NSDictionary
+                    var dic = infos["customer"] as NSDictionary
+                    ZDLoginStore.sharedInstance.currentCustomer = ZDCustomer(dic:dic)
+
+                }
+            })
+        }
     }
     
     func setCustomTabBar() {
@@ -64,9 +92,10 @@ class ZDMainTabbarController: UITabBarController, UITabBarControllerDelegate, ZD
     
     // MARK: - ZDLoginTableViewControllerDelegate
     
-    func loginViewControllerDidLoggedIn(viewController: UIViewController) {
+    func loginViewControllerDidLoggedIn(viewController: UIViewController, phoneNumber: NSString, password: NSString) {
         self.selectedIndex = 1
-        NSUserDefaults.standardUserDefaults().setObject("13818111655", forKey: "DefaultCurrentUserId")
+        NSUserDefaults.standardUserDefaults().setObject(phoneNumber, forKey: "DefaultCurrentUserId")
+        NSUserDefaults.standardUserDefaults().setObject(password, forKey: "DefaultCurrentPassword")
         NSUserDefaults.standardUserDefaults().synchronize()
         self.dismissViewControllerAnimated(true, completion: {} )
     }
@@ -74,7 +103,7 @@ class ZDMainTabbarController: UITabBarController, UITabBarControllerDelegate, ZD
     // MARK: - ZDMyAccounViewControllerDelegate
     
     func myAccounViewControllerShouldLogout(viewController: UIViewController) {
-        self.selectedIndex = 2
+        self.selectedIndex = 0
         NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "DefaultCurrentUserId")
         NSUserDefaults.standardUserDefaults().synchronize()
         self.presentLoginViewController()

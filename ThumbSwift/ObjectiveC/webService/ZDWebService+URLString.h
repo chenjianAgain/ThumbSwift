@@ -14,4 +14,19 @@
 @interface ZDWebService (URLString)
 
 - (NSString *)URLStringForLogin;
+- (NSString *)URLStringForRegister;
+- (NSString *)URLStringForGetValidateCode;
+- (NSString *)URLStringForIdCardBind;
+- (NSString *)URLStringForForgetAndResetPassword;
+- (NSString *)URLStringForGetNetSite;
+- (NSString *)URLStringForUpdatePassword;
+- (NSString *)URLStringForSubmitProductOrder;
+- (NSString *)URLStringForApplyBusiness;
+- (NSString *)URLStringForCommitFeedback;
+- (NSString *)URLStringForGetProductLists;
+- (NSString *)URLStringForGetManagerInfo;
+- (NSString *)URLStringForGetProductOrderListsOfCustomer;
+- (NSString *)URLStringForGetTransactoinDetailOfCustomer;
+- (NSString *)URLStringForGetLoanList;
+
 @end

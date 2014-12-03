@@ -14,22 +14,36 @@ class ZDFinancialStore: NSObject {
     var products: NSMutableArray? {
         get {
             if _products == nil {
-                var file = NSBundle.mainBundle().pathForResource("product", ofType: "plist")!
-                var dicArray = NSArray(contentsOfFile: file)
-
-                var mutableArray = NSMutableArray()
-                
-                for dic in dicArray! {
-                    var product = Product(dic: dic as NSDictionary)
-                    mutableArray.addObject(product)
-                }
-                
-                _products = mutableArray
+                _products = self.getProducts("product")
             }
             return _products
         }
     }
     
+    private var _onlineProducts: NSMutableArray?
+    var onlineProducts: NSMutableArray? {
+        get {
+            if _onlineProducts == nil {
+                _onlineProducts = self.getProducts("onlineProduct")
+            }
+            return _onlineProducts
+        }
+    }
+    
+    func getProducts(fileName: NSString) -> NSMutableArray? {
+
+            var file = NSBundle.mainBundle().pathForResource(fileName, ofType: "plist")!
+            var dicArray = NSArray(contentsOfFile: file)
+            
+            var mutableArray = NSMutableArray()
+            
+            for dic in dicArray! {
+                var product = ZDProduct(dic: dic as NSDictionary)
+                mutableArray.addObject(product)
+            }
+            
+            return mutableArray
+    }
     
     class var sharedInstance : ZDFinancialStore {
         struct Static {

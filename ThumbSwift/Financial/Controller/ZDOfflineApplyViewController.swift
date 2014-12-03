@@ -10,7 +10,7 @@ import UIKit
 
 class ZDOfflineApplyViewController: UIViewController, ShowOfflineHeadViewControllerDelegate {
 
-    var product: Product?
+    var product: ZDProduct?
     @IBOutlet weak var objectCustomerLabel: UILabel!
     @IBOutlet weak var featureLabel: UILabel!
 
