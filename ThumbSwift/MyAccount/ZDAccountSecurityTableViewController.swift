@@ -17,34 +17,46 @@ class ZDAccountSecurityTableViewController: UITableViewController {
     
     var delegate: ZDAccountSecurityTableViewControllerDelegate?
     
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet var idCardLabel: UILabel!
+    @IBOutlet var phoneLabel: UILabel!
+    
     @IBAction func logout() {
-        if self.delegate != nil {
-            self.delegate?.accountSecurityTableViewControllerShouldLogout(self)
-        }
+        self.showAlert()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+        
+        self.nameLabel.text = ZDLoginStore.sharedInstance.currentCustomer?.managerName
+        self.idCardLabel.text = ZDLoginStore.sharedInstance.currentCustomer?.idnum
+        self.phoneLabel.text = ZDLoginStore.sharedInstance.currentCustomer?.managerMobile
     }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        if indexPath.section == 1 && indexPath.row == 0 {
+            self.showAlert()
+        }
     }
-
-    // MARK: - Table view data source
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Potentially incomplete method implementation.
-        // Return the number of sections.
-        return 0
-    }
-
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete method implementation.
-        // Return the number of rows in the section.
-        return 0
+    
+    func showAlert() {
+        let alertVc = UIAlertController(title: "", message: "确定要退出吗？", preferredStyle: .ActionSheet)
+        let okAction = UIAlertAction(title: "确定", style: .Default) { action -> Void in
+            alertVc.dismissViewControllerAnimated(true, completion: nil)
+            if self.delegate != nil {
+                self.delegate?.accountSecurityTableViewControllerShouldLogout(self)
+            }
+        }
+        let cancelAction = UIAlertAction(title: "取消", style: .Default) { action -> Void in
+            alertVc.dismissViewControllerAnimated(true, completion: nil)
+        }
+        
+        alertVc.addAction(okAction)
+        alertVc.addAction(cancelAction)
+        self.presentViewController(alertVc, animated: true, completion: nil)
     }
 
     /*

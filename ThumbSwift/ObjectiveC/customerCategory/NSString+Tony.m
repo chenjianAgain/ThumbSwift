@@ -170,6 +170,15 @@ static char base64EncodingTable[64] = {
     return timeString;
 }
 
++ (NSString *)twoCharRandom
+{
+    int retVal = arc4random() % 100;
+    if (retVal < 10) {
+        return [NSString stringWithFormat:@"0%d", retVal];
+    }
+    return [NSString stringWithFormat:@"%d", retVal];
+}
+
 + (NSString *)stringTranslatedFromDate:(NSDate *)date
 {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
@@ -184,6 +193,56 @@ static char base64EncodingTable[64] = {
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     NSDate *date=[formatter dateFromString:uiDate];
     return date;
+}
+
++(NSString *)formatStringForPercentageWithString:(NSString *)string
+{
+    if (!string.length) return @"";
+    
+    float a = [string floatValue];
+    float b = a * 100;
+    NSString * bstring = [NSString stringWithFormat:@"%f",b];
+    NSArray *arr = [bstring componentsSeparatedByString:@"."];
+    NSString *beforeString = arr[0];
+    NSString *afterString = [arr[1] substringToIndex:2];
+    return [NSString stringWithFormat:@"%@.%@%%",beforeString,afterString];
+}
+
++ (NSString *)formatStringToSaveWithString:(NSString *)string digit:(NSInteger)digit decimalStyle:(BOOL)flag
+{
+    if (!string.length) return @"";
+    
+    if (flag) {
+        NSNumberFormatter *formatter = [[NSNumberFormatter alloc] init];
+        formatter.numberStyle = NSNumberFormatterDecimalStyle;
+        string = [formatter stringFromNumber:[NSNumber numberWithDouble:string.doubleValue]];
+    }
+    
+    NSArray *arr = [string componentsSeparatedByString:@"."];
+    if (arr.count == 1) {
+        if (!digit) return string;
+        
+        string = [string stringByAppendingString:@"."];
+        for (int i = 0; i < digit; i ++) {
+            string = [string stringByAppendingString:@"0"];
+        }
+        return string;
+    } else {
+        NSString *beforeString = arr[0];
+        NSString *afterString = arr[1];
+        
+        if (digit == 0) {
+            return [string componentsSeparatedByString:@"."][0];
+        } else if (afterString.length >= digit) {
+            return [NSString stringWithFormat:@"%@.%@",beforeString,[afterString substringToIndex:digit]];
+        } else {
+            NSUInteger c = digit - afterString.length;
+            for (int k = 0; k < c; k ++) {
+                string = [string stringByAppendingString:@"0"];
+            }
+            return string;
+        }
+    }
 }
 
 /*

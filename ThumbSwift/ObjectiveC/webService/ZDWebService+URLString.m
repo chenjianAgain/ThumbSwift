@@ -94,10 +94,28 @@
     return @"/busiFinance/getTransactionDetails";
 }
 
-//获取债券列表
+//获取债权列表
 - (NSString *)URLStringForGetLoanList
 {
     return @"/busiFinance/getLoanList";
+}
+
+//删除订单
+- (NSString *)URLStringForDeleteProductOrder
+{
+    return @"/busiFinance/delBusiFinance4APP";
+}
+
+//更新客户信息
+- (NSString *)URLStringForUpdateCustomerInfo
+{
+    return @"/account/newUpdateCustomerFromApp";
+}
+
+//获取客户总资产和总收益
+- (NSString *)URLStringForUpdateCustomerTotalMoney
+{
+    return @"/busiFinance/newQueryAccountTotal";
 }
 
 @end

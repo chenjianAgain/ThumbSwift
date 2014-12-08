@@ -16,39 +16,23 @@ class ZDIncomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "execute:", name: "kMyAccountShouldRefreshNotification", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "clear", name: "kMyAccountShouldClearNotification", object: nil)
         // Do any additional setup after loading the view.
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        var customerId = ZDLoginStore.sharedInstance.currentCustomer?.customerId
-        if customerId != nil {
-            ZDWebService.sharedWebService().getProductOrderListsWithCustomerId(customerId, { (error, resultDic) -> Void in
-                println(resultDic)
-                if (error == nil) {
-                    self.accountTotalLabel.text = resultDic["accountTotal"] as? String
-                    self.incomeTotalLabel.text = resultDic["incomeTotal"] as? String
-                }
-            })
-            
-        }
-    }
+    func execute(notification: NSNotification) {
+        var userInfo = notification.userInfo! as NSDictionary
+        let account = NSString.formatStringToSaveWithString(userInfo["accountTotal"] as? String, digit:2, decimalStyle: false)
+        let income = NSString.formatStringToSaveWithString(userInfo["incomeTotal"] as? String, digit: 2, decimalStyle: false)
+        self.accountTotalLabel.text = account
+        self.incomeTotalLabel.text = income
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func clear() {
+        self.accountTotalLabel.text = "0.00"
+        self.incomeTotalLabel.text = "0.00"
     }
-    */
-
+    
 }

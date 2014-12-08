@@ -10,10 +10,14 @@
 #import "ZDNSURLSession.h"
 #import "ZDWebService+URLString.h"
 #import "ZDWebserviceDataParse.h"
+#import "NSString+Tony.h"
+#import <UIKit/UIKit.h>
 
 #define DefaultCRMPublishService  @"300001"//crm公共接口转发
 #define DefaultProjectNo    @"D"//大拇指项目
-#define secret @"bb369ff752074e2ba055f32da6bc3114"//密钥匙
+#define secret @"bb369ff752074e2ba055f32da6bc3114"//公网测试
+//#define secret @"efa59fc4876e4272979cc39b128866f7"//公网正式
+
 
 @interface ZDWebService ()
 
@@ -151,25 +155,54 @@
 }
 
 //提交产品订单,feProduct:产品id，feAmount：订单金额，feRequestDate：订单创建时间，
-- (void)submitProductOrderWithFeProduct:(NSString *)feProduct feAmount:(NSString *)feAmount feRequestDate:(NSString *)feRequestDate customerid:(NSString *)customerid managerId:(NSString *)managerId managerCode:(NSString *)managerCode completion:(void (^)(NSError *, NSDictionary *))handler
+- (void)submitProductOrderWithFeProduct:(NSString *)feProduct
+                               feAmount:(NSString *)feAmount
+                          feRequestDate:(NSString *)feRequestDate
+                             customerid:(NSString *)customerid
+                              managerId:(NSString *)managerId
+                            managerCode:(NSString *)managerCode
+                           feActivityId:(BOOL )feActivityId
+                             completion:(void (^)(NSError *, NSDictionary *))handler
 {
     NSDictionary *oriDic;
-    if (managerId.length) {
-        oriDic = @{
-                 @"feProduct":feProduct,
-                 @"feAmount":feAmount,
-                 @"feRequestDate":feRequestDate,
-                 @"customerId":customerid,
-                 @"managerId":managerId
-                 };
+    if (feActivityId) {
+        if (managerId.length) {
+            oriDic = @{
+                       @"feProduct":feProduct,
+                       @"feAmount":feAmount,
+                       @"feRequestDate":feRequestDate,
+                       @"customerId":customerid,
+                       @"managerId":managerId,
+                       @"feActivityId":@"1"
+                       };
+        } else {
+            oriDic = @{
+                       @"feProduct":feProduct,
+                       @"feAmount":feAmount,
+                       @"feRequestDate":feRequestDate,
+                       @"customerId":customerid,
+                       @"managerCode":managerCode,
+                       @"feActivityId":@"1"
+                       };
+        }
     } else {
-        oriDic = @{
-                   @"feProduct":feProduct,
-                   @"feAmount":feAmount,
-                   @"feRequestDate":feRequestDate,
-                   @"customerId":customerid,
-                   @"managerCode":managerCode
-                   };
+        if (managerId.length) {
+            oriDic = @{
+                       @"feProduct":feProduct,
+                       @"feAmount":feAmount,
+                       @"feRequestDate":feRequestDate,
+                       @"customerId":customerid,
+                       @"managerId":managerId,
+                       };
+        } else {
+            oriDic = @{
+                       @"feProduct":feProduct,
+                       @"feAmount":feAmount,
+                       @"feRequestDate":feRequestDate,
+                       @"customerId":customerid,
+                       @"managerCode":managerCode,
+                       };
+        }
     }
     
     NSString *urlString = [self URLStringForSubmitProductOrder];
@@ -295,6 +328,50 @@
     [self fetchByWebserviceURLString:urlString dictionary:oriDic handler:handler];
 }
 
+//删除产品订单
+- (void)deleteProductOrderWithBusiId:(NSString *)busiId completion:(void (^)(NSError *, NSDictionary *))handler
+{
+    NSDictionary *oriDic = @{
+                             @"Id":busiId
+                             };
+    NSString *urlString = [self URLStringForDeleteProductOrder];
+    [self fetchByWebserviceURLString:urlString dictionary:oriDic handler:handler];
+}
+
+//更新客户信息
+- (void)updateCustomerInfoWtihCustomerId:(NSString *)customerId userName:(NSString *)userName idNum:(NSString *)idNum completion:(void (^)(NSError *, NSDictionary *))handler
+{
+    NSDictionary *oriDic = @{
+                             @"customerId":customerId,
+                             @"name":userName,
+                             @"idnum":idNum
+                             };
+    NSString *urlString = [self URLStringForUpdateCustomerInfo];
+    [self fetchByWebserviceURLString:urlString dictionary:oriDic handler:handler];
+}
+
+//获取客户资产总值跟累计收益
+- (void)updateCustomerTotalMoneyWithCustomerId:(NSString *)customerid
+                                    completion:(void(^)(NSError *error,NSDictionary *resultDic))handler
+{
+    NSDictionary *oriDic = @{
+                             @"customerId":customerid,
+                             };
+    NSString *urlString = [self URLStringForUpdateCustomerTotalMoney];
+    
+//    { (error, resultDic) -> Void in
+//        println(resultDic)
+//        if (error == nil) {
+//            NSNotificationCenter.defaultCenter().postNotificationName("kMyAccountShouldRefreshNotification", object: self, userInfo: resultDic)
+//        }
+//    }
+    [self fetchByWebserviceURLString:urlString dictionary:oriDic handler:^(NSError *error, NSDictionary *resultDic) {
+        if (!error) {
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"kMyAccountShouldRefreshNotification" object:self userInfo:resultDic];
+        }
+    }];
+}
+
 #pragma mark - 共用请求方法
 
 // webservice的接口请求设置
@@ -305,7 +382,10 @@
     NSString *reqParam = [self translateToJsonStringWithDictionaryUnnormal:dic];
     NSString *reqParam2 = [self translateToJsonStringWithDictionaryNormal:dic];//用于生成校验码
     
-    NSString *userAgent = [NSString stringWithFormat:@"iOS,%@,iPhone",[[UIDevice currentDevice] systemVersion]];
+    NSDictionary *infoDictionary = [[NSBundle mainBundle] infoDictionary];
+    NSString *appName = [infoDictionary objectForKey:@"CFBundleDisplayName"];
+    NSString *appVersion = [infoDictionary objectForKey:@"CFBundleShortVersionString"];
+    NSString *userAgent = [NSString stringWithFormat:@"%@ %@(iPhone;iOS %@;zh_CN)",appName,appVersion,[[UIDevice currentDevice] systemVersion]];
     NSDictionary *httpHeadDic = @{
                                   @"token":@"",
                                   @"User-Agent":userAgent,

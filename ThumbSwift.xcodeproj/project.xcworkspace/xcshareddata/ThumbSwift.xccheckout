@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>FDEF6329-FB70-4CEC-A211-3AAAF97DC9DE</string>
+	<key>IDESourceControlProjectName</key>
+	<string>ThumbSwift</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>2e8f35f5-2174-4a1b-95b5-0cf6af2ab9e9++7659</key>
+		<string>http://172.16.230.232/zendaimoney/Thumb/code/IOS/trunk</string>
+		<key>782F9A81D1FB3006BF0E06ABFD1159C836BDCC3B</key>
+		<string>https://github.com/chenjianAgain/ThumbSwift.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>ThumbSwift.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>2e8f35f5-2174-4a1b-95b5-0cf6af2ab9e9++7659</key>
+		<string>../../../newsvn/trunk</string>
+		<key>782F9A81D1FB3006BF0E06ABFD1159C836BDCC3B</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectRepositoryRootDictionary</key>
+	<dict>
+		<key>2e8f35f5-2174-4a1b-95b5-0cf6af2ab9e9++7659</key>
+		<string>http://172.16.230.232/zendaimoney</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/chenjianAgain/ThumbSwift.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>782F9A81D1FB3006BF0E06ABFD1159C836BDCC3B</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>782F9A81D1FB3006BF0E06ABFD1159C836BDCC3B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>ThumbSwift</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.subversion</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2e8f35f5-2174-4a1b-95b5-0cf6af2ab9e9++7659</string>
+			<key>IDESourceControlWCCName</key>
+			<string>trunk</string>
+		</dict>
+	</array>
+</dict>
+</plist>

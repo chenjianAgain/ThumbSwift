@@ -87,6 +87,10 @@ class ZDMainTabbarController: UITabBarController, UITabBarControllerDelegate, ZD
             return false
         }
         
+        if nav2.topViewController is ZDMyAccounViewController {
+            fetchMyAccountData()
+        }
+        
         return true
     }
     
@@ -94,6 +98,7 @@ class ZDMainTabbarController: UITabBarController, UITabBarControllerDelegate, ZD
     
     func loginViewControllerDidLoggedIn(viewController: UIViewController, phoneNumber: NSString, password: NSString) {
         self.selectedIndex = 1
+        fetchMyAccountData()
         NSUserDefaults.standardUserDefaults().setObject(phoneNumber, forKey: "DefaultCurrentUserId")
         NSUserDefaults.standardUserDefaults().setObject(password, forKey: "DefaultCurrentPassword")
         NSUserDefaults.standardUserDefaults().synchronize()
@@ -104,6 +109,7 @@ class ZDMainTabbarController: UITabBarController, UITabBarControllerDelegate, ZD
     
     func myAccounViewControllerShouldLogout(viewController: UIViewController) {
         self.selectedIndex = 0
+        NSNotificationCenter.defaultCenter().postNotificationName("kMyAccountShouldClearNotification", object: self, userInfo: nil)
         NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "DefaultCurrentUserId")
         NSUserDefaults.standardUserDefaults().synchronize()
         self.presentLoginViewController()
@@ -116,6 +122,14 @@ class ZDMainTabbarController: UITabBarController, UITabBarControllerDelegate, ZD
         var loginVC = loginNav.topViewController as ZDLoginTableViewController
         loginVC.delegate = self
         self.presentViewController(loginNav, animated: true, completion: {})
+    }
+    
+    func fetchMyAccountData() {
+        var customerId = ZDLoginStore.sharedInstance.currentCustomer?.customerId
+        if customerId != nil {
+            ZDWebService.sharedWebService().updateCustomerTotalMoneyWithCustomerId(customerId, nil)
+            
+        }
     }
 
 }

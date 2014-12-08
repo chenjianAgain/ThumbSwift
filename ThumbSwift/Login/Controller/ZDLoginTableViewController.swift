@@ -40,7 +40,7 @@ class ZDLoginTableViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.usernameTextField.text = "15806193165"
+        self.usernameTextField.text = "13564442916"
         self.passwordTextField.text = "123456"
     }
     

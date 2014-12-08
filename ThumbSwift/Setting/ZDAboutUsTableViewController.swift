@@ -27,6 +27,4 @@ class ZDAboutUsTableViewController: UITableViewController {
             destinationViewController.navigationTitle = "用户服务协议"
         }
     }
-
-
 }

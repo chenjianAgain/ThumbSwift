@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AllCustomerCategoryHeaders.h"
+//#import "AllCustomerCategoryHeaders.h"
 
 @interface ZDWebService : NSObject<NSXMLParserDelegate>
 
@@ -61,6 +61,7 @@
                             customerid:(NSString *)customerid
                              managerId:(NSString *)managerId
                            managerCode:(NSString *)managerCode
+                           feActivityId:(BOOL)feActivityId
                             completion:(void(^)(NSError *error,NSDictionary *resultDic))handler;
 
 //线下理财申请
@@ -108,6 +109,20 @@
 //获取债权列表
 - (void)getLoanListWithInvestId:(NSString *)investId
                      completion:(void(^)(NSError *error,NSDictionary *resultDic))handler;
+
+//取消订单
+-(void)deleteProductOrderWithBusiId:(NSString *)busiId
+                         completion:(void(^)(NSError *error,NSDictionary *resultDic))handler;
+
+//更新客户信息
+- (void)updateCustomerInfoWtihCustomerId:(NSString *)customerId
+                                userName:(NSString *)userName
+                                   idNum:(NSString *)idNum
+                              completion:(void(^)(NSError *error,NSDictionary *resultDic))handler;
+
+//获取客户资产总值跟累计收益
+- (void)updateCustomerTotalMoneyWithCustomerId:(NSString *)customerid
+                                    completion:(void(^)(NSError *error,NSDictionary *resultDic))handler;
 
 +(ZDWebService *)sharedWebService;
 @end

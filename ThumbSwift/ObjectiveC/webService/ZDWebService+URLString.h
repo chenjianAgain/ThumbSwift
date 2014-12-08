@@ -9,7 +9,8 @@
 #import "ZDWebService.h"
 #define API_URL @"https://180.166.169.132:8444/hera/"//公网测试，crm
 #define TranslateWebURL @"http://180.166.169.132:8089/message_webservice/services/DealProcessor?wsdl=DealProcessorService.wsdl"//公网测试,许峰转发172.16.73.117
-//#define PushWebURL @"http://172.16.73.117:8080/message_webservice/services/DealProcessor?wsdl=DealProcessorService.wsdl"
+
+//#define TranslateWebURL @"http://message.ezendai.com:8877/message_webservice/services/DealProcessor?wsdl=DealProcessorService.wsdl"
 
 @interface ZDWebService (URLString)
 
@@ -28,5 +29,8 @@
 - (NSString *)URLStringForGetProductOrderListsOfCustomer;
 - (NSString *)URLStringForGetTransactoinDetailOfCustomer;
 - (NSString *)URLStringForGetLoanList;
+- (NSString *)URLStringForDeleteProductOrder;
+- (NSString *)URLStringForUpdateCustomerInfo;
+- (NSString *)URLStringForUpdateCustomerTotalMoney;
 
 @end

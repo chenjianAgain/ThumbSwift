@@ -13,7 +13,9 @@
 #import "NSString+Tony.h"
 #import "GSReachability.h"
 #import "Reachability.h"
+#import "SSFSegmentControl.h"
+#import "SSFShowSimpleAlert.h"
+#import "SSFPasswordGestureView.h"
+#import "SSFShowColorPointView.h"
 
 #endif
-
-#define DefaultCurrentUserId    @"DefaultCurrentUserId"

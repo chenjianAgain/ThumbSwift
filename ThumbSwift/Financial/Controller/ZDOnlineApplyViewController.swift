@@ -11,7 +11,7 @@ import UIKit
 class ZDOnlineApplyViewController: UIViewController, ShowOfflineHeadViewControllerDelegate {
 
     var product: ZDProduct?
-    
+    var isPlanA: Bool?
 
     func showOfflineHeadViewControllerShouldReturn(viewController: UIViewController) {
         self.navigationController?.popViewControllerAnimated(true)

@@ -7,7 +7,6 @@
 //
 
 #import "ZDNSURLSession.h"
-//#import "AppDelegate.h"
 #import "ZDWebService+URLString.h"
 
 @interface ZDNSURLSession()<NSURLSessionDelegate,NSURLSessionTaskDelegate,NSURLSessionDataDelegate>
