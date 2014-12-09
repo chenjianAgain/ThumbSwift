@@ -34,6 +34,7 @@
 		18B86F911A32D9C40007670C /* SSFShowColorPointView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B86F841A32D9C40007670C /* SSFShowColorPointView.m */; };
 		18B86F921A32D9C40007670C /* SSFShowColorPointView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18B86F851A32D9C40007670C /* SSFShowColorPointView.xib */; };
 		18B86F931A32D9C40007670C /* SSFShowSimpleAlert.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B86F871A32D9C40007670C /* SSFShowSimpleAlert.m */; };
+		18D1F8061A35CF75007E7E98 /* ZDWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18D1F8051A35CF75007E7E98 /* ZDWebViewController.swift */; };
 		18DA99CD1A24AD05007FE052 /* ZDLoginTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DA99C81A24AD05007FE052 /* ZDLoginTableViewController.swift */; };
 		18DA99CE1A24AD05007FE052 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 18DA99CC1A24AD05007FE052 /* Login.storyboard */; };
 		18DA99D01A24AD70007FE052 /* ZDCustomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18DA99CF1A24AD70007FE052 /* ZDCustomer.swift */; };
@@ -115,6 +116,7 @@
 		18B86F851A32D9C40007670C /* SSFShowColorPointView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SSFShowColorPointView.xib; sourceTree = "<group>"; };
 		18B86F861A32D9C40007670C /* SSFShowSimpleAlert.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SSFShowSimpleAlert.h; sourceTree = "<group>"; };
 		18B86F871A32D9C40007670C /* SSFShowSimpleAlert.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SSFShowSimpleAlert.m; sourceTree = "<group>"; };
+		18D1F8051A35CF75007E7E98 /* ZDWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZDWebViewController.swift; sourceTree = "<group>"; };
 		18DA99C81A24AD05007FE052 /* ZDLoginTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZDLoginTableViewController.swift; sourceTree = "<group>"; };
 		18DA99CC1A24AD05007FE052 /* Login.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		18DA99CF1A24AD70007FE052 /* ZDCustomer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ZDCustomer.swift; sourceTree = "<group>"; };
@@ -399,6 +401,7 @@
 				18DB03BE1A18A12300AFA261 /* ZDOfflineApplyViewController.swift */,
 				18B86F4F1A2F4D8C0007670C /* ZDOnlineApplyViewController.swift */,
 				18DB03C01A18A2DB00AFA261 /* ShowOfflineHeadViewController.swift */,
+				18D1F8051A35CF75007E7E98 /* ZDWebViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -571,6 +574,7 @@
 				18DB03B71A1883FF00AFA261 /* ZDProduct.swift in Sources */,
 				18DB03BF1A18A12300AFA261 /* ZDOfflineApplyViewController.swift in Sources */,
 				18DA99D21A24AEAF007FE052 /* ZDLoginStore.swift in Sources */,
+				18D1F8061A35CF75007E7E98 /* ZDWebViewController.swift in Sources */,
 				18DB03AA1A18819900AFA261 /* ZDFinancialTableViewController.swift in Sources */,
 				18DB03C11A18A2DB00AFA261 /* ShowOfflineHeadViewController.swift in Sources */,
 				18E17ED71A2C9673003445DC /* ZDQuestionBackViewController.swift in Sources */,

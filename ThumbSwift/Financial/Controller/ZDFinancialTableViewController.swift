@@ -12,7 +12,7 @@ class ZDFinancialTableViewController: BaseViewController, ZDSelectionViewControl
     
     var data: NSArray?
     var selectedProduct: ZDProduct?
-    var segmentControllSelectedIndex = 0
+    var segmentControllSelectedIndex = 1
     
     var _viewController: ZDSelectionViewController?
     var viewController: ZDSelectionViewController? {
@@ -31,7 +31,7 @@ class ZDFinancialTableViewController: BaseViewController, ZDSelectionViewControl
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideExtraCellLine()
-        self.data = ZDFinancialStore.sharedInstance.products
+        self.data = ZDFinancialStore.sharedInstance.onlineProducts
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -54,12 +54,6 @@ class ZDFinancialTableViewController: BaseViewController, ZDSelectionViewControl
     func segmentControlDidChanged(viewController: UIViewController, selectedIndex: NSInteger)
     {
         self.segmentControllSelectedIndex = selectedIndex
-        if selectedIndex == 0 {
-            self.data = ZDFinancialStore.sharedInstance.products
-        } else if selectedIndex == 1 {
-            self.data = ZDFinancialStore.sharedInstance.onlineProducts
-        }
-        self.tableView.reloadData()
     }
 
     // MARK: - Table view data source
@@ -93,11 +87,7 @@ class ZDFinancialTableViewController: BaseViewController, ZDSelectionViewControl
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         self.selectedProduct = self.data![indexPath.row] as? ZDProduct
-        if self.segmentControllSelectedIndex == 0 {
-            self.performSegueWithIdentifier("Show Offline Detail", sender: self)
-        } else if self.segmentControllSelectedIndex == 1 {
-            self.performSegueWithIdentifier("Show Online Detail", sender: self)
-        }
+        self.performSegueWithIdentifier("Show Online Detail", sender: self)
     }
     
     // MARK: - Navigation
@@ -107,15 +97,16 @@ class ZDFinancialTableViewController: BaseViewController, ZDSelectionViewControl
         if segue.identifier == "Embed Selection" {
             var selectionViewController = segue.destinationViewController as ZDSelectionViewController
             selectionViewController.delegate = self
-        } else if segue.identifier == "Show Offline Detail" {
-            var offlineApplyViewController: ZDOfflineApplyViewController = segue.destinationViewController as ZDOfflineApplyViewController
-            offlineApplyViewController.product = self.selectedProduct
         } else if segue.identifier == "Show Online Detail" {
             var onlineApplyViewController = segue.destinationViewController as ZDOnlineApplyViewController
             onlineApplyViewController.product = self.selectedProduct
+            onlineApplyViewController.isPlanA = segmentControllSelectedIndex == 0
         }
-        
-        
+    }
+    
+    // MARK: - Actions
+    @IBAction func bannerTapped() {
+        self.performSegueWithIdentifier("Show Banner", sender: self)
     }
 
 }

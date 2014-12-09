@@ -19,19 +19,19 @@ class ZDSelectionViewController: UIViewController {
     @IBOutlet weak var leadingConstraint: NSLayoutConstraint!
     
     var delegate: ZDSelectionViewControllerDelegate?
-    var selectedIndex: NSInteger = 0
+    var selectedIndex: NSInteger? 
     
     @IBOutlet var buttons: [UIButton]!
     @IBOutlet weak var movingView: UIView!
     
     @IBAction func firstSegmentSelected(sender: AnyObject!) {
-        self.selectedIndex = 0
+        selectedIndex = 0
         self.updateSegmentForSelectedIndex(0, button: sender as UIButton)
         self.delegate?.segmentControlDidChanged(self, selectedIndex: 0)
     }
     
     @IBAction func secondSegmentSelected(sender: AnyObject!) {
-        self.selectedIndex = 1
+        selectedIndex = 1
         self.updateSegmentForSelectedIndex(1, button: sender as UIButton)
         self.delegate?.segmentControlDidChanged(self, selectedIndex: 1)
     }

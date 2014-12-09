@@ -5,6 +5,40 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--活动-->
+        <scene sceneID="bfB-zA-rnE">
+            <objects>
+                <viewController id="JIl-EF-ERG" customClass="ZDWebViewController" customModule="ThumbSwift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Ufz-jn-5iC"/>
+                        <viewControllerLayoutGuide type="bottom" id="nuZ-a2-Uit"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9XF-cD-f6e">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ssD-rw-00Q">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ssD-rw-00Q" firstAttribute="top" secondItem="Ufz-jn-5iC" secondAttribute="bottom" constant="-64" id="0Ma-dG-6bJ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ssD-rw-00Q" secondAttribute="trailing" constant="-16" id="Fat-ow-Wen"/>
+                            <constraint firstItem="ssD-rw-00Q" firstAttribute="leading" secondItem="9XF-cD-f6e" secondAttribute="leadingMargin" constant="-16" id="RTx-Wi-r2J"/>
+                            <constraint firstItem="nuZ-a2-Uit" firstAttribute="top" secondItem="ssD-rw-00Q" secondAttribute="bottom" id="pMe-nf-cZR"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="活动" id="hJC-UP-opa"/>
+                    <connections>
+                        <outlet property="webView" destination="ssD-rw-00Q" id="oYN-7w-o8D"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sSN-vs-P5H" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1491" y="-209"/>
+        </scene>
         <!--投资理财-->
         <scene sceneID="tdw-D6-vSI">
             <objects>
@@ -17,8 +51,12 @@
                             <rect key="frame" x="0.0" y="64" width="600" height="180"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banner" translatesAutoresizingMaskIntoConstraints="NO" id="Lnu-P3-dJp">
+                                <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="banner" translatesAutoresizingMaskIntoConstraints="NO" id="Lnu-P3-dJp">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="180"/>
+                                    <gestureRecognizers/>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="mXG-3o-Ky6" appends="YES" id="DeL-Dv-NhM"/>
+                                    </connections>
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -213,11 +251,16 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="投资理财" id="soj-fI-HuP"/>
                     <connections>
-                        <segue destination="qbf-Im-0g3" kind="presentation" identifier="Show Offline Detail" id="nn5-ne-tUJ"/>
                         <segue destination="JNI-T3-qPv" kind="show" identifier="Show Online Detail" id="uKB-8g-Jdu"/>
+                        <segue destination="JIl-EF-ERG" kind="push" identifier="Show Banner" id="lbu-TR-oiF"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="c6p-X3-6i8" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="mXG-3o-Ky6">
+                    <connections>
+                        <action selector="bannerTapped" destination="eD4-Zj-7Kv" id="9s7-RR-J3Z"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1491" y="507"/>
         </scene>
